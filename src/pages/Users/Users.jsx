@@ -10,7 +10,6 @@ const Users = () => {
   const [users, setUsers] = useState(initialUsers);
   const navigate = useNavigate();
 
-
   const handleDelete = (id) => {
     Swal.fire({
       title: 'Are you sure?',
@@ -46,7 +45,6 @@ const Users = () => {
         }
       })
   }
-
 
   return (
     <div className="p-5">

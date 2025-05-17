@@ -24,7 +24,7 @@ const router = createBrowserRouter([
                 Component: AddUser,
             },
             {
-                path: 'edit-user',
+                path: 'edit-user/:id',
                 loader: ({params})=> fetch(`http://localhost:3000/users/${params._id}`),
                 Component: EditUser,
             },

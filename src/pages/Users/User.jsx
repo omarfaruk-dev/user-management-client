@@ -14,14 +14,14 @@ const User = ({ user, index, handleDelete }) => {
             <td className="border-b-1">{status}</td>
             <td className="border-b-1">
                 <div className="space-x-1">
-                    <Link><button 
-                    
-                    className="btn btn-sm btn-outline">
+                    <Link to={`/edit-user/${_id}`} ><button
+
+                        className="btn btn-sm btn-outline">
                         <FaEdit />
                     </button></Link>
-                    <Link><button 
-                    onClick={()=>handleDelete(_id)}
-                    className="btn btn-sm btn-outline btn-error">
+                    <Link><button
+                        onClick={() => handleDelete(_id)}
+                        className="btn btn-sm btn-outline btn-error">
                         <FaTrash />
                     </button></Link>
                 </div>

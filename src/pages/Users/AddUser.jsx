@@ -1,8 +1,43 @@
 import { RiUserAddFill } from "react-icons/ri";
 import { TbArrowBackUpDouble } from "react-icons/tb";
 import { Link } from "react-router";
+import Swal from "sweetalert2";
 
 const AddUser = () => {
+
+  const handleAddUser = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const newUser = Object.fromEntries(formData.entries());
+    console.log(newUser);
+
+
+
+    //add user to db
+    fetch('http://localhost:3000/users', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(newUser)
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "User added successfully!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+        console.log('data after submit to db', data);
+      })
+
+  }
+
   return (
     <div className="max-w-4xl mx-auto px-4 p-6 mt-10 bg-white shadow-md rounded-md border border-secondary">
       <Link to="/" className="text-secondary font-semibold flex items-center mb-4">
@@ -14,14 +49,15 @@ const AddUser = () => {
         Use the below form to create a new account
       </p>
 
-      <form>
+      <form onSubmit={handleAddUser}>
         {/* Name Input */}
         <div className="mb-4">
           <label className="block mb-1 font-medium text-gray-700">Name</label>
           <input
             type="text"
+            name="name"
             placeholder="Enter Your Name"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full" required
           />
         </div>
 
@@ -30,8 +66,9 @@ const AddUser = () => {
           <label className="block mb-1 font-medium text-gray-700">Email</label>
           <input
             type="email"
+            name="email"
             placeholder="Enter Your Email"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full" required
           />
         </div>
 
@@ -40,11 +77,11 @@ const AddUser = () => {
           <label className="block mb-1 font-medium text-gray-700">Gender</label>
           <div className="flex items-center gap-6">
             <label className="label cursor-pointer gap-2">
-              <input type="radio" name="gender" className="radio radio-secondary" defaultChecked />
+              <input type="radio" name="gender" value='Male' className="radio radio-secondary" defaultChecked/>
               <span className="label-text">Male</span>
             </label>
             <label className="label cursor-pointer gap-2">
-              <input type="radio" name="gender" className="radio radio-secondary" />
+              <input type="radio" name="gender" value='Female' className="radio radio-secondary" />
               <span className="label-text">Female</span>
             </label>
           </div>
@@ -55,11 +92,11 @@ const AddUser = () => {
           <label className="block mb-1 font-medium text-gray-700">Status</label>
           <div className="flex items-center gap-6">
             <label className="label cursor-pointer gap-2">
-              <input type="radio" name="status" className="radio radio-secondary" defaultChecked />
+              <input type="radio" name="status" value='Active' className="radio radio-secondary" defaultChecked />
               <span className="label-text">Active</span>
             </label>
             <label className="label cursor-pointer gap-2">
-              <input type="radio" name="status" className="radio radio-secondary" />
+              <input type="radio" name="status" value='Inactive' className="radio radio-secondary" />
               <span className="label-text">Inactive</span>
             </label>
           </div>
