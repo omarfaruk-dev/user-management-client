@@ -15,7 +15,7 @@ const EditUser = () => {
         const updatedUser = Object.fromEntries(formData.entries());
 
         //update user to db
-        fetch(`http://localhost:3000/users/${_id}`, {
+        fetch(`https://user-management-server-tan.vercel.app/users/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
