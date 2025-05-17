@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
 import MainLayout from "../layouts/MainLayout";
-import Spinner from "../components/ui/Spinner";
+// import Spinner from "../components/ui/Spinner";
 import AddUser from "../pages/Users/AddUser";
 import EditUser from "../pages/Users/EditUser";
 
@@ -25,13 +25,13 @@ const router = createBrowserRouter([
             },
             {
                 path: 'edit-user/:id',
-                loader: ({params})=> fetch(`http://localhost:3000/users/${params._id}`),
+                loader: ({params})=> fetch(`http://localhost:3000/users/${params.id}`),
                 Component: EditUser,
             },
            
             {
                 path: '*',
-                Component: ErrorPage
+                Component: ErrorPage,
             }
         ]
     }
