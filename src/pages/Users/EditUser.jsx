@@ -13,7 +13,6 @@ const EditUser = () => {
         const form = e.target;
         const formData = new FormData(form);
         const updatedUser = Object.fromEntries(formData.entries());
-        console.log(updatedUser);
 
         //update user to db
         fetch(`http://localhost:3000/users/${_id}`, {
@@ -34,9 +33,7 @@ const EditUser = () => {
                         timer: 1500
                     });
                 }
-                console.log(data, "after updated");
             })
-
 
     }
     return (

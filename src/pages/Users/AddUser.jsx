@@ -10,9 +10,6 @@ const AddUser = () => {
     const form = e.target;
     const formData = new FormData(form);
     const newUser = Object.fromEntries(formData.entries());
-    console.log(newUser);
-
-
 
     //add user to db
     fetch('http://localhost:3000/users', {
@@ -33,7 +30,6 @@ const AddUser = () => {
             timer: 1500
           });
         }
-        console.log('data after submit to db', data);
       })
 
   }

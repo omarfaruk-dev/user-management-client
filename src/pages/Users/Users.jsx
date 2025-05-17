@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 const Users = () => {
 
+
   const initialUsers = useLoaderData();
   const [users, setUsers] = useState(initialUsers);
   const navigate = useNavigate();
@@ -27,7 +28,6 @@ const Users = () => {
           })
             .then((res) => res.json())
             .then(data => {
-              console.log(data, id);
               if (data.deletedCount > 0) {
                 Swal.fire({
                   position: "center",

@@ -2,9 +2,9 @@ import { createBrowserRouter } from "react-router";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
 import MainLayout from "../layouts/MainLayout";
-// import Spinner from "../components/ui/Spinner";
 import AddUser from "../pages/Users/AddUser";
 import EditUser from "../pages/Users/EditUser";
+import Spinner from "../components/ui/Spinner";
 
 
 const router = createBrowserRouter([
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                // hydrateFallbackElement: Spinner,
+                hydrateFallbackElement: <Spinner />,
                 loader: ()=> fetch('http://localhost:3000/users'),
 
                 Component: Home,
@@ -25,6 +25,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'edit-user/:id',
+                hydrateFallbackElement: <Spinner />,
                 loader: ({params})=> fetch(`http://localhost:3000/users/${params.id}`),
                 Component: EditUser,
             },
