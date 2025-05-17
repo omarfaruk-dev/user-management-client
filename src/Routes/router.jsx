@@ -14,7 +14,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                hydrateFallbackElement: Spinner,
+                // hydrateFallbackElement: Spinner,
                 loader: ()=> fetch('http://localhost:3000/users'),
 
                 Component: Home,
